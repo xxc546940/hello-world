@@ -26,9 +26,6 @@ jobs:
     - run: |
               cat dist/css/app.54a723a5.css
 
-  docker:
-    runs-on: ubuntu-latest
-    steps:
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1

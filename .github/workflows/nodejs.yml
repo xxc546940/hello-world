@@ -22,7 +22,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
+    - 
+      name: Build NPM and address context
+      run: npm run build --if-present
+      with:
+        context: .
+        outputs: type=folder,dest=/tmp
     - run: cat dist/css/app.54a723a5.css
     -
       name: Set up QEMU
@@ -41,5 +46,6 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
+        context: /tmp
         push: true
         tags: xxc546940/test-repo:latest
